@@ -1,13 +1,20 @@
 package me.nick22985.chatAffections.command;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.nick22985.chatAffections.model.CustomDataStorage;
+import me.nick22985.chatAffections.model.Feelings;
+import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandMap;
 import org.mineacademy.fo.command.SimpleCommand;
+import org.mineacademy.fo.plugin.SimplePlugin;
 import org.mineacademy.fo.settings.Lang;
 
-import static org.bukkit.Bukkit.reload;
+import static java.lang.Boolean.parseBoolean;
+import static org.mineacademy.fo.remain.Remain.registerCommand;
+
 
 /**
  * A sample standalone command.
@@ -22,7 +29,7 @@ public final class AdminCommand extends SimpleCommand {
         setDescription("An example command");
         setMinArguments(1);
         setPermission("chataffections.admin");
-        List<String> alliases = new ArrayList<String>();
+        List<String> alliases = new ArrayList<>();
         alliases.add("ca");
         setAliases(alliases);
 
@@ -46,15 +53,26 @@ public final class AdminCommand extends SimpleCommand {
         String param = args[0].toLowerCase();
         checkBoolean("add".equals(param) || "remove".equals(param) || "reload".equals(param), "Invalid parameter, use add or remove, not {0}");
         if ("reload".equals(param)) {
-            reload();
-        }
-        checkArgs(2, "Usage /{label} <add/remove> <name> <toSender> <toTarget> <?permissionNode> <true/false>");
-        if ("add".equals(param)) {
-            // TODO Save to file
-            tellSuccess(Lang.of("Commands.Command_Added").replace("%command%", args[1]));
+            //TODO reload plugin
+
         }
         if ("remove".equals(param)) {
             tellSuccess(Lang.of("Commands.Command_Removed").replace("%command%", args[1]));
+        }
+        checkArgs(2, "Usage /{label} <add> <name> <toSender> <toTarget> <?permissionNode> <true/false>");
+        if ("add".equals(param)) {
+            // TODO Save to file
+            // FIXME set default values in the Feelings class
+            if (args[4].length() == 0) {
+                args[4] = "";
+            }
+            if (args[5].length() == 0) {
+                args[5] = "true";
+            }
+            Feelings feeling = new Feelings(args[1].toLowerCase(), args[2], args[3], args[4], parseBoolean(args[5]));
+
+            registerCommand(new UserCommands(feeling));
+            tellSuccess(Lang.of("Commands.Command_Added").replace("%command%", args[1]));
         }
 
 

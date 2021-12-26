@@ -55,7 +55,7 @@ public final class ChatAffectionsPlugin extends SimplePlugin {
         // Variable.loadVariables();
         System.out.println("HERE---------------------------------------");
         //TODO import yaml file with commands
-        ArrayList<Feelings> obj = new ArrayList<Feelings>();
+        ArrayList<Feelings> obj = new ArrayList<>();
         obj.add(new Feelings("hug", "&7You give &a&l%player% &r&7a warm hug. &cAwww &4❤", "&a&l%player% &r&7gives you a warm hug. &cAwww &4❤", "test", true));
         obj.add(new Feelings("bite", "&7You sink your teeth into &c&l%player_name%&r&7''s skin.", "&c&l%player% &r&7sinks their teeth into your skin.", "test", true));
         obj.add(new Feelings("Punch", "&7You strike &c&l%player% &r&7with a punch. Ouch!", "&c&l%player% &r&7strikes you with a punch. Ouch!", "test", false));
@@ -68,7 +68,7 @@ public final class ChatAffectionsPlugin extends SimplePlugin {
 
     @Override
     protected void onPluginReload() {
-        reload();
+
     }
 
     /* ------------------------------------------------------------------------------- */

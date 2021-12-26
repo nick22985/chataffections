@@ -81,7 +81,7 @@ Commands:
   Toggled_Plugin_Part: "'&7You are ' + (ignoring ? '&2no longer' : '&cnow') + ' &7ignoring {0}.'"
   Use_Alternative_Header: false
   Alternative_Header: "&c{plugin_name}: &7Type '/{0} ?' to see all commands."
-  Command_Removed: "%command% has been successfully removed"
+  Command_Removed: "%command% has been successfully removed. Plugin will need to be reloaded to take affect"
   Command_Added: "%command% has been successfully added"
 
 # -------------------------------------------------------------------------------------------------
